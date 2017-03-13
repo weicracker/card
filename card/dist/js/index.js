@@ -25,7 +25,7 @@ $(function () {
             var mint = $("#min").val();
             var cardTime = $("#cardTime");
             var preUrl = "./preload/autocard.js";
-            var timer = 1 * mint; //60 * 
+            var timer = 60 * mint; //60 * 
             var t = timer;
             
             delayTime = setTimeout(function () {
@@ -34,7 +34,7 @@ $(function () {
                 $(webView).attr('preload', preUrl);
                 $('body').append(webView);
                 $(webView)[0].addEventListener('dom-ready', () => {
-                    $(webView)[0].openDevTools();
+                    // $(webView)[0].openDevTools();
                     var strFn = 'autoCard.init()';
                     $(webView)[0].executeJavaScript(strFn, false, function () {});
                 })
@@ -68,6 +68,8 @@ $(function () {
         } else {
             $('#userID').removeAttr('disabled');
             $("#min").removeAttr('disabled');
+             $("#neiwang").removeAttr('disabled');
+             cardTime.html("————");
             clearTimeout(delayTime);
             clearInterval(interVal);
             $('#startBtn').html("开始");
