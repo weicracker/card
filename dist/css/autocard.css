@@ -8,8 +8,17 @@
     width: 0px;
     height: 0px;
   }
+  table tr td:nth-child(1){
+    color: #fff;
+  }
+  span {
+    color: #fff;
+  }
+ #neiwang{
+   cursor: pointer;
+ }
   body{
-      background:skyblue;
+      background:#0099FF;
   }
   a#startBtn{
       width:60px;

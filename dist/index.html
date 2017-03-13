@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>智能打卡v1.0.1</title>
     <link rel="stylesheet" type="text/css" href="css/autocard.css">
     <style>
-      webview {
-    display:inline-flex;
-    width:0;
-    height:0;
-  }
-  webview.hide {
-    flex: 0 1;
-    width: 0px;
-    height: 0px;
-  }
+        webview {
+            display: inline-flex;
+            width: 0;
+            height: 0;
+        }
+        
+        webview.hide {
+            flex: 0 1;
+            width: 0px;
+            height: 0px;
+        }
     </style>
 </head>
+
 <body>
-    <table >
+    <table>
         <tr>
             <td>用户名：</td>
             <td><input id="userID" type="text"></td>
             <td><input id="check" type="checkbox"></td>
         </tr>
         <tr>
-            <td>分钟：</td>
+            <td>分钟 &nbsp;&nbsp;&nbsp;：</td>
             <td><input id="min" type="text"></td>
         </tr>
         <tr>
-            <td>内网：</td>
+            <td>内网 &nbsp;&nbsp;&nbsp;：</td>
             <td><input id="neiwang" type="checkbox"></td>
         </tr>
     </table>
@@ -43,4 +46,5 @@
     //     wvl.openDevTools()
     // })
 </script>
+
 </html>
