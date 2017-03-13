@@ -1,0 +1,13 @@
+{
+  "name": "autocard",
+  "productName": "autoCard",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "自动打卡系统",
+  "author": "bjsasc  <jiwei3778@bjsasc.com>",
+  "private": true,
+  "main": "./out/index.js",
+  "dependencies": {
+    "superagent": "^3.5.0"
+  }
+}

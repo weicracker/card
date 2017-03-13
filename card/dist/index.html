@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能打卡v1.0.1</title>
+    <link rel="stylesheet" type="text/css" href="css/autocard.css">
+    <style>
+      webview {
+    display:inline-flex;
+    width:0;
+    height:0;
+  }
+  webview.hide {
+    flex: 0 1;
+    width: 0px;
+    height: 0px;
+  }
+    </style>
+</head>
+<body>
+    <table >
+        <tr>
+            <td>用户名：</td>
+            <td><input id="userID" type="text"></td>
+            <td><input id="check" type="checkbox"></td>
+        </tr>
+        <tr>
+            <td>分钟：</td>
+            <td><input id="min" type="text"></td>
+        </tr>
+        <tr>
+            <td>内网：</td>
+            <td><input id="neiwang" type="checkbox"></td>
+        </tr>
+    </table>
+    <div style="font-size: 12px;margin-top: 20px;"><span style="color:red;" id="cardTime">————</span><span>秒后开始打卡</span><a href="javascript:;" id="startBtn">开始</a></div>
+    <!--<webview id="wvl" src="http://oa.bjsasc.com/TimeCard/TimeCard_avidm.asp?userid=-2147"></webview>-->
+</body>
+<script src="./js/jquery-1.7.2.min.js"></script>
+<script src="./js/index.js"></script>
+<script>
+    // wvl.addEventListener('dom-ready', () => {
+    //     wvl.openDevTools()
+    // })
+</script>
+</html>
