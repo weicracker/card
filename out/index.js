@@ -7,7 +7,7 @@ const path = require('path');
 app.on('ready', function () {
     let autoCard = new BrowserWindow({
         width: 330,
-        height: 250,
+        height: 256,
         show: false,
         resizable: false
     });
