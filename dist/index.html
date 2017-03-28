@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>智能打卡v1.0.1</title>
+    <title>智能打卡v1.0.3</title>
     <link rel="stylesheet" type="text/css" href="css/autocard.css">
     <style>
         webview {
@@ -30,15 +30,33 @@
         <tr>
             <td>
                 <div class="timer"></div>
-                分钟 &nbsp;&nbsp;&nbsp;：</td>
-            <td><input id="min" type="text"></td>
+                时间 &nbsp;&nbsp;&nbsp;：</td>
+            <td><input class="tabTimer" id="min" type="text" placeholder="s m h d m w"></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="timer"></div>
+                时间 &nbsp;&nbsp;&nbsp;：</td>
+            <td><input class="tabTimer"  id="min" type="text" placeholder="s m h d m w"></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="timer"></div>
+                时间 &nbsp;&nbsp;&nbsp;：</td>
+            <td><input class="tabTimer"  id="min" type="text" placeholder="s m h d m w"></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="timer"></div>
+                时间 &nbsp;&nbsp;&nbsp;：</td>
+            <td><input class="tabTimer"  id="min" type="text" placeholder="s m h d m w"></td>
         </tr>
         <tr>
             <td>内网 &nbsp;&nbsp;&nbsp;：</td>
             <td><input id="neiwang" type="checkbox"></td>
         </tr>
     </table>
-    <div style="font-size: 12px;margin-top: 20px;"><span style="color:red;" id="cardTime">————</span><span>秒后开始打卡</span><a href="javascript:;" id="startBtn">开始</a></div>
+    <div style="font-size: 12px;margin-top: 20px;">已成功：<span style="color:#9ff;" id="cardTime">————</span><span>次</span><a href="javascript:;" id="startBtn">开始</a></div>
     <!--<webview id="wvl" src="http://oa.bjsasc.com/TimeCard/TimeCard_avidm.asp?userid=-2147"></webview>-->
 </body>
 <script src="./js/jquery-1.7.2.min.js"></script>
