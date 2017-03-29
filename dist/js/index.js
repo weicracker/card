@@ -5,6 +5,7 @@ $(function () {
     var mArr = []; //所有定时器数组
     var successCount = 0;
     var cardTime = $("#cardTime"); // 显示成功次数
+    var check = $('#check'); //记住用户名
     if (localStorage.getItem('neiwang') != '') {
         $('#neiwang').attr('checked', 'checked');
     }
@@ -24,7 +25,6 @@ $(function () {
             }
             // ─────────────────────────────────────────────────────────────────
             var userID = $('#userID').val(); //用户名
-            var check = $('#check'); //记住用户名
             var userUrl = url + userID; // 用户url 地址
             var preUrl = "./preload/autocard.js"; // 预加载的js
             var tableTimer = $("table .tabTimer"); // 获取所有用户填写时间的input
