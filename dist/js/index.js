@@ -1,10 +1,8 @@
 $(function () {
     var url = "";
-    var delayTime;
     var schedule = require('node-schedule');
-    var interVal;
-    var timerArr = [];
-    var mArr = [];
+    var timerArr = []; // 时间数组
+    var mArr = []; //所有定时器数组
     var successCount = 0;
     if (localStorage.getItem('neiwang') != '') {
         $('#neiwang').attr('checked', 'checked');
@@ -23,15 +21,16 @@ $(function () {
                 url = "http://oa.bjsasc.com/TimeCard/TimeCard_avidm.asp?username=";
                 localStorage.setItem('neiwang', "");
             }
-            var userID = $('#userID').val();
-            var check = $('#check');
-            var userUrl = url + userID;
-            var cardTime = $("#cardTime");
-            var preUrl = "./preload/autocard.js";
-            var tableTimer = $("table .tabTimer");
+            // ─────────────────────────────────────────────────────────────────
+            var userID = $('#userID').val();//用户名
+            var check = $('#check'); //记住用户名
+            var userUrl = url + userID; // 用户url 地址
+            var cardTime = $("#cardTime"); // 显示成功次数
+            var preUrl = "./preload/autocard.js"; // 预加载的js
+            var tableTimer = $("table .tabTimer"); // 获取所有用户填写时间的input
             for (var i = 0; i < tableTimer.length; i++) {
                 if ($(tableTimer[i]).val()) {
-                    timerArr.push($(tableTimer[i]).val());
+                    timerArr.push($(tableTimer[i]).val()); // 将用户填写的时间保存到数组
                 }
             }
             for (var j = 0; j < timerArr.length; j++) {
@@ -49,8 +48,9 @@ $(function () {
                         cardTime.html(successCount);
                     })
                 });
-                mArr.push(m);
+                mArr.push(m); // 将所有的定时事件存入数组
             }
+            // 当开始点击时：所有输入框变为禁用状态
             $('#userID').attr('disabled', 'disabled');
             $("#min").attr('disabled', 'disabled');
             $("#neiwang").attr('disabled', 'disabled');
@@ -63,13 +63,17 @@ $(function () {
                 localStorage.setItem('userID', "");
             }
         } else {
+            // 取消按钮被点击
+            //移除禁用状态
             $('#userID').removeAttr('disabled');
             $("#min").removeAttr('disabled');
             $(".tabTimer").removeAttr('disabled');
             $("#neiwang").removeAttr('disabled');
+            // 取消所有的定时事件
             for (var z = 0; z < mArr.length; z++) {
                 mArr[z].cancel();
             }
+            // 将定时事件数组及时间数组设为空
             mArr=[];
             timerArr = [];
             cardTime.html("______");
