@@ -5,14 +5,10 @@
          auto: function () {
              var listrow = document.querySelectorAll('.listrow');
              var listrowA = listrow[0].querySelectorAll(".ListCellRow a");
-             var url = document.querySelectorAll('.listrow .ListCellRow a')[0].href;
-             if (listrowA.length) {
-                 var url = listrowA[0].href;
-             } else {
-                 var url = listrow[3].querySelectorAll(".ListCellRow a")[0].href;
+             var url = listrowA.length ? listrowA[0].href : (listrow[5].querySelectorAll(".ListCellRow a").length ? listrow[5].querySelectorAll(".ListCellRow a")[0].href : "");
+             if (url) {
+                 location.href = url;
              }
-             console.log(url)
-             location.href = url;
          }
      }
      window.autoCard = autoCard;
