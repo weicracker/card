@@ -1,4 +1,8 @@
 $(function () {
+    const {
+        remote
+    } = require("electron");
+    var birdge = remote.require("../out/event");
     var url = "";
     var schedule = require('node-schedule');
     var timerArr = []; // 时间数组
@@ -6,6 +10,15 @@ $(function () {
     var successCount = 0;
     var cardTime = $("#cardTime"); // 显示成功次数
     var check = $('#check'); //记住用户名
+
+    try {
+        birdge.on("logmessage", function (message) {
+            var temp = `<li>log：<span>${message.curContent}</span>时间:<span>${message.time}</span><br>详情:<p>${message.url}</p></li>`;
+            $("ul").append(temp)
+        })
+    } catch (err) {
+        console.log(err)
+    }
     if (localStorage.getItem('neiwang') != '') {
         $('#neiwang').attr('checked', 'checked');
     }
@@ -45,12 +58,12 @@ $(function () {
                     $('body').append(webView);
                     $(webView)[0].addEventListener('dom-ready', () => {
                         // $(webView)[0].openDevTools();
-                        var strFn ='autoCard.init()';
+                        var strFn = 'autoCard.init()';
                         if (onceFlag) {
                             $(webView)[0].executeJavaScript(strFn, false, function () {
                                 onceFlag = false;
                                 setTimeout(function () {
-                                   webView.remove();
+                                       webView.remove();
                                 }, 5000);
                             });
                         }

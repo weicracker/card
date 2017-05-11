@@ -3,11 +3,12 @@ const {
     BrowserWindow,
     ipcMain
 } = require("electron");
+var event = require("./event");
 const path = require('path');
 app.on('ready', function () {
     let autoCard = new BrowserWindow({
         width: 360,
-        height: 210,
+        height: 310,
         show: false,
         resizable: false
     });
