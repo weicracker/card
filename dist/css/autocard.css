@@ -1,3 +1,4 @@
+
   webview {
     display:inline-flex;
     width:0;
@@ -18,7 +19,10 @@
    cursor: pointer;
  }
   body{
-      background:#0099FF;
+      /* background:#0099FF; */
+      background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);
+      /* background-image: linear-gradient( 135deg, #FEB692 10%, #EA5455 100%); */
+      /* background-image: linear-gradient( 135deg, #5EFCE8 10%, #736EFE 100%); */
   }
   a#startBtn{
       width:60px;
@@ -57,4 +61,8 @@
   }
   li p{
     font-size: 10px;
+  }
+  pre{
+    line-height: 20px;
+    color:rgb(255, 250, 46);
   }

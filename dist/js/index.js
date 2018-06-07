@@ -13,6 +13,8 @@ $(function () {
 
     try {
         birdge.on("logmessage", function (message) {
+            successCount++;
+            cardTime.html(successCount);
             var temp = `<li>log：<span>${message.curContent}</span>时间:<span>${message.time}</span><br>详情:<p>${message.url}</p></li>`;
             $("ul").append(temp)
         })
@@ -51,25 +53,30 @@ $(function () {
             for (var j = 0; j < timerArr.length; j++) {
                 var m = "dsq" + j
                 m = schedule.scheduleJob(timerArr[j], function () {
-                    var webView = $('<webview>');
-                    var onceFlag = true; //dom ready 里的代码只执行一次
-                    $(webView).attr('src', userUrl);
-                    $(webView).attr('preload', preUrl);
-                    $('body').append(webView);
-                    $(webView)[0].addEventListener('dom-ready', () => {
-                        // $(webView)[0].openDevTools();
-                        var strFn = 'autoCard.init()';
-                        if (onceFlag) {
-                            $(webView)[0].executeJavaScript(strFn, false, function () {
-                                onceFlag = false;
-                                setTimeout(function () {
-                                       webView.remove();
-                                }, 5000);
-                            });
-                        }
-                    })
-                    successCount++;
-                    cardTime.html(successCount);
+                    // 获取当前星期日期： 如果当前星期为周六或周日时，则不执行自动打卡。
+                    var dTime = new Date();
+                    var week = dTime.getDay();
+                    // 当打卡时间为周一到周五时则执行自动打卡
+                    if ([1, 2, 3, 4, 5].indexOf(week)) {
+                        var webView = $('<webview>');
+                        var onceFlag = true; //dom ready 里的代码只执行一次
+                        $(webView).attr('src', userUrl);
+                        $(webView).attr('preload', preUrl);
+                        $('body').append(webView);
+                        $(webView)[0].addEventListener('dom-ready', () => {
+                            // $(webView)[0].openDevTools();
+                            var strFn = 'autoCard.init()';
+                            if (onceFlag) {
+                                $(webView)[0].executeJavaScript(strFn, false, function () {
+                                    onceFlag = false;
+                                    // 5分钟后将移除webview 标签--确保运行性能
+                                    setTimeout(function () {
+                                        webView.remove();
+                                    }, 310000);
+                                });
+                            }
+                        })
+                    }
                 });
                 mArr.push(m); // 将所有的定时事件存入数组
             }
