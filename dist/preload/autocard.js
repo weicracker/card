@@ -11,18 +11,21 @@
             var url = listrowA.length ? listrowA[0].href : (listrow[3].querySelectorAll(".ListCellRow a").length ? listrow[3].querySelectorAll(".ListCellRow a")[0].href : ""); //0上午上班，3下午下班
             var curContent = listrowA.length ? listrow[0].querySelectorAll(".ListCellRow")[0].innerHTML : (listrow[3].querySelectorAll(".ListCellRow a").length ? listrow[3].querySelectorAll(".ListCellRow")[0].innerHTML : "");
             var time = this.curentTime()
-            var logMes = {
-                url: url,
-                time: time,
-                curContent: curContent
-            }
-            try {
-                birdge.emit("logmessage", logMes);
-            } catch (err) {
-                console.log(err)
-            }
             if (url) {
-                 location.href = url;
+                // 为模拟人工打卡，每次打卡时间误差调整为5分钟内
+                setTimeout(() => {
+                    location.href = url;
+                    var logMes = {
+                        url: url,
+                        time: time,
+                        curContent: curContent
+                    }
+                    try {
+                        birdge.emit("logmessage", logMes);
+                    } catch (err) {
+                        console.log(err)
+                    }
+                }, parseInt(Math.random() * 300000));
             }
         },
         curentTime: function () {
