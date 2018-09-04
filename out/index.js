@@ -8,22 +8,8 @@ const {
 var event = require("./event");
 const path = require('path');
 app.on('ready', function () {
-    let autoCard = new BrowserWindow({
-        width: 360,
-        height: 440,
-        show: false,
-        resizable: false
-    });
-    // console.log(app.getAppPath())
-    let autoCardPath = path.join(app.getAppPath(), 'dist/index.html');
-    autoCard.loadURL(autoCardPath);
-    // 菜单是否显示
-    autoCard.setMenu(null);
-    autoCard.show();
-    //外层开发者工具打开
-    // autoCard.webContents.openDevTools();
     // 增加系统托盘图标
-    const tray = new Tray(__dirname + './auto_card.png');
+ /*    const tray = new Tray(path.join(app.getAppPath(), 'out/auto_card.png'));
     tray.setToolTip('智能打卡');
     const contextMenu = Menu.buildFromTemplate([{
             label: '显示窗口',
@@ -54,7 +40,22 @@ app.on('ready', function () {
     tray.addListener('click', (event) => {
         autoCard.show();
     })
-    tray.setContextMenu(contextMenu);
+    tray.setContextMenu(contextMenu); */
+    // 启动窗口
+    let autoCard = new BrowserWindow({
+        width: 360,
+        height: 460,
+        show: false,
+        resizable: false
+    });
+    // console.log(app.getAppPath())
+    let autoCardPath = path.join(app.getAppPath(), 'dist/index.html');
+    autoCard.loadURL(autoCardPath);
+    // 菜单是否显示
+    autoCard.setMenu(null);
+    autoCard.show();
+    //外层开发者工具打开
+    // autoCard.webContents.openDevTools();
     autoCard.on('closed', () => {
         autoCard = null
         process.exit(0);

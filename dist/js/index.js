@@ -57,7 +57,7 @@ $(function () {
                     var dTime = new Date();
                     var week = dTime.getDay();
                     // 当打卡时间为周一到周五时则执行自动打卡
-                    if ([1, 2, 3, 4, 5].indexOf(week)) {
+                    if ([1, 2, 3, 4, 5].indexOf(week)>-1) {
                         var webView = $('<webview>');
                         var onceFlag = true; //dom ready 里的代码只执行一次
                         $(webView).attr('src', userUrl);
