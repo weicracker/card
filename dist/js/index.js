@@ -69,10 +69,10 @@ $(function () {
                             if (onceFlag) {
                                 $(webView)[0].executeJavaScript(strFn, false, function () {
                                     onceFlag = false;
-                                    // 5分钟后将移除webview 标签--确保运行性能
+                                    // 17分钟后将移除webview 标签--确保运行性能
                                     setTimeout(function () {
                                         webView.remove();
-                                    }, 310000);
+                                    }, 17*60*1000);
                                 });
                             }
                         })

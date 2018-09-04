@@ -12,7 +12,7 @@
             var curContent = listrowA.length ? listrow[0].querySelectorAll(".ListCellRow")[0].innerHTML : (listrow[3].querySelectorAll(".ListCellRow a").length ? listrow[3].querySelectorAll(".ListCellRow")[0].innerHTML : "");
             var time = this.curentTime()
             if (url) {
-                // 为模拟人工打卡，每次打卡时间误差调整为30分钟内
+                // 为模拟人工打卡，每次打卡时间误差调整为15分钟内
                 setTimeout(() => {
                     location.href = url;
                     var logMes = {
@@ -25,7 +25,7 @@
                     } catch (err) {
                         console.log(err)
                     }
-                }, parseInt(Math.random() * 1800000));
+                }, parseInt(Math.random() * 15*60*1000));
             }
         },
         curentTime: function () {
