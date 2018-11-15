@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>智能打卡v4.0.0</title>
+    <title>全能波v7.0.0</title>
     <link rel="stylesheet" type="text/css" href="css/autocard.css">
     <style>
         webview {
@@ -34,7 +34,8 @@
         <tr>
             <td>
                 <div class="timer"></div>
-                上班时间 &nbsp;&nbsp;&nbsp;：</td>
+                上班时间 &nbsp;&nbsp;&nbsp;：
+            </td>
             <td>
                 <input class="tabTimer" id="min" type="text" placeholder="hour:minutes">
             </td>
@@ -42,7 +43,8 @@
         <tr>
             <td>
                 <div class="timer"></div>
-                下班时间 &nbsp;&nbsp;&nbsp;：</td>
+                下班时间 &nbsp;&nbsp;&nbsp;：
+            </td>
             <td>
                 <input class="tabTimer" id="min" type="text" placeholder="hour:minutes">
             </td>
@@ -54,6 +56,20 @@
             </td>
         </tr>
     </table>
+    <table>
+        <tr>
+            <td>周六 &nbsp;&nbsp;&nbsp;：</td>
+            <td>
+                <input id="sarteday" type="checkbox">
+            </td>
+            <td>
+            </td>
+            <td style="color:#fff;">周日 &nbsp;&nbsp;&nbsp;：</td>
+            <td>
+                <input id="sunday" type="checkbox">
+            </td>
+        </tr>
+    </table>
     <div style="font-size: 12px;margin-top: 20px;">已成功：
         <span style="color:#9ff;" id="cardTime">————</span>
         <span>次</span>
@@ -61,11 +77,12 @@
     </div>
     <ul>
     </ul>
-<pre>
+    <pre>
 使用说明：
 1. 本程序设置用户名，及上下班打卡时间后每周一
-至周五将自动打卡，每次打卡时间将依据您设置的
-打卡时间向后顺延5分钟左右，以确保模拟人工打卡。
+至周五将自动打卡，周六日需要按需而定，每次打卡
+时间将依据您设置的打卡时间向后顺延20分钟以内，
+以确保模拟人工打卡。
 2. 注意点击关闭按钮，将结束本程序运行。
 3. 如需保持程序运行请使用最小化按钮
 <!-- 3. 如果需要操作程序如隐藏/显示/窗口、退出操作，

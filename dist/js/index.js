@@ -10,12 +10,12 @@ $(function () {
     var successCount = 0;
     var cardTime = $("#cardTime"); // 显示成功次数
     var check = $('#check'); //记住用户名
-
+    var weekarr = [1, 2, 3, 4, 5];
     try {
         birdge.on("logmessage", function (message) {
             successCount++;
             cardTime.html(successCount);
-            var temp = `<li>log：<span>${message.curContent}</span>时间:<span>${message.time}</span><br>详情:<p>${message.url}</p></li>`;
+            var temp = `<li>log：<span>${message.curContent}</span>时间:<span>${message.time}</span></li>`;
             $("ul").append(temp)
         })
     } catch (err) {
@@ -31,14 +31,14 @@ $(function () {
     $('#startBtn').on('click', function () {
         if ($(this).html() == "开始") {
             //内网选项是否被勾中
-            if ($('#neiwang').attr('checked')) {
+            if ($('#neiwang').is(":checked")) {
                 url = "http://10.0.0.130/TimeCard/TimeCard_avidm.asp?username=";
                 localStorage.setItem('neiwang', "true");
             } else {
                 url = "http://oa.bjsasc.com/TimeCard/TimeCard_avidm.asp?username=";
                 localStorage.setItem('neiwang', "");
             }
-            // ─────────────────────────────────────────────────────────────────
+
             var userID = $('#userID').val(); //用户名
             var userUrl = url + userID; // 用户url 地址
             var preUrl = "./preload/autocard.js"; // 预加载的js
@@ -57,7 +57,10 @@ $(function () {
                     var dTime = new Date();
                     var week = dTime.getDay();
                     // 当打卡时间为周一到周五时则执行自动打卡
-                    if ([1, 2, 3, 4, 5].indexOf(week)>-1) {
+                    // ─────────────────────────────────────────────────────────────────
+                    // 判断周六日是否被勾选
+                    //-----------------------------
+                    if (weekarr.indexOf(week) > -1 || $('#sarteday').is(":checked") || $('#sunday').is(":checked")) {
                         var webView = $('<webview>');
                         var onceFlag = true; //dom ready 里的代码只执行一次
                         $(webView).attr('src', userUrl);
@@ -69,10 +72,10 @@ $(function () {
                             if (onceFlag) {
                                 $(webView)[0].executeJavaScript(strFn, false, function () {
                                     onceFlag = false;
-                                    // 17分钟后将移除webview 标签--确保运行性能
+                                    // 22分钟后将移除webview 标签--确保运行性能
                                     setTimeout(function () {
                                         webView.remove();
-                                    }, 17*60*1000);
+                                    }, 22 * 60 * 1000);
                                 });
                             }
                         })
