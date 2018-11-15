@@ -44,7 +44,7 @@ app.on('ready', function () {
     // 启动窗口
     let autoCard = new BrowserWindow({
         width: 360,
-        height: 485,
+        height: 500,
         show: false,
         resizable: false
     });
