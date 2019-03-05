@@ -2,6 +2,7 @@ $(function () {
     const {
         remote
     } = require("electron");
+    var randomTime = 20;
     var birdge = remote.require("../out/event");
     var url = "";
     var schedule = require('node-schedule');
@@ -82,7 +83,7 @@ $(function () {
                                     });
                                 }
                             })
-                        }, parseInt(Math.random() * 20 * 60 * 1000))
+                        }, parseInt(Math.random() * randomTime * 60 * 1000))
                     }
 
                 });
