@@ -60,26 +60,31 @@ $(function () {
                     // ─────────────────────────────────────────────────────────────────
                     // 判断周六日是否被勾选
                     //-----------------------------
+                    // 解决出现校验失败问题
+                    // 将创建 webview 标签改为20分钟内随机创建，当创建完标签后 2分钟后开始打卡，打完卡后 ， 3分钟后移除webview 标签。
                     if (weekarr.indexOf(week) > -1 || $('#sarteday').is(":checked") || $('#sunday').is(":checked")) {
-                        var webView = $('<webview>');
-                        var onceFlag = true; //dom ready 里的代码只执行一次
-                        $(webView).attr('src', userUrl);
-                        $(webView).attr('preload', preUrl);
-                        $('body').append(webView);
-                        $(webView)[0].addEventListener('dom-ready', () => {
-                            // $(webView)[0].openDevTools();
-                            var strFn = 'autoCard.init()';
-                            if (onceFlag) {
-                                $(webView)[0].executeJavaScript(strFn, false, function () {
-                                    onceFlag = false;
-                                    // 22分钟后将移除webview 标签--确保运行性能
-                                    setTimeout(function () {
-                                        webView.remove();
-                                    }, 22 * 60 * 1000);
-                                });
-                            }
-                        })
+                        setTimeout(() => {
+                            var webView = $('<webview>');
+                            var onceFlag = true; //dom ready 里的代码只执行一次
+                            $(webView).attr('src', userUrl);
+                            $(webView).attr('preload', preUrl);
+                            $('body').append(webView);
+                            $(webView)[0].addEventListener('dom-ready', () => {
+                                // $(webView)[0].openDevTools();
+                                var strFn = 'autoCard.init()';
+                                if (onceFlag) {
+                                    $(webView)[0].executeJavaScript(strFn, false, function () {
+                                        onceFlag = false;
+                                        // 5分钟后将移除webview 标签--确保运行性能
+                                        setTimeout(function () {
+                                            webView.remove();
+                                        }, 5 * 60 * 1000);
+                                    });
+                                }
+                            })
+                        }, parseInt(Math.random() * 20 * 60 * 1000))
                     }
+
                 });
                 mArr.push(m); // 将所有的定时事件存入数组
             }
